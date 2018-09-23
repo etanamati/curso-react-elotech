@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Form, Button, Col } from 'react-bootstrap';
+
+import FieldGroup from '../field/FieldGroup';
 
 class Configuracao extends Component {
 
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             uid: '',
@@ -14,7 +16,7 @@ class Configuracao extends Component {
     }
 
     handleChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         })
@@ -26,29 +28,22 @@ class Configuracao extends Component {
 
     render() {
         return (
-            <div>
-                <div className="row">
-                    <div className="form-group col-md-12">
-                        <label htmlFor="displayName">Nome:</label>
-                        <input type="text" name="displayName" value={this.state.displayName} onChange={this.handleChange}/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="form-group col-md-12">
-                        <label htmlFor="userName">Usuário:</label>
-                        <input type="text" name="userName" value={this.state.userName} onChange={this.handleChange}/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="form-group col-md-12">
-                        <label htmlFor="photoURL">Url da foto:</label>
-                        <input type="text" name="photoURL" value={this.state.photoURL} onChange={this.handleChange}/>
-                    </div>
-                </div>
-                <div>
-                    <Button bsStyle="success" onClick={this.handleSalvar}>Salvar</Button>
-                </div>
-            </div>
+            <Form>
+                <Col sm={4}>
+                    <FieldGroup id="formControlsNome" label="Nome:" type="text" name="displayName" value={this.state.displayName} onChange={this.handleChange}/>
+                </Col>
+                <Col sm={4}>
+                    <FieldGroup id="formControlsUsuario" label="Usuário:" type="text" name="userName" value={this.state.userName} onChange={this.handleChange}/>
+                </Col>
+                <Col sm={4}>
+                    <FieldGroup id="formControlsPhotoURL" label="Url da foto:" type="text" name="photoURL" value={this.state.photoURL} onChange={this.handleChange}/>
+                </Col>
+                <Col sm={12}>
+                    <Button variant="success" onClick={this.handleSalvar}>Salvar</Button>
+                </Col>
+            </Form>
+
+
         );
     }
 }

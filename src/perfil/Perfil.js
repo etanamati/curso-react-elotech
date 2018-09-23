@@ -1,18 +1,19 @@
 
-import React from 'react';
-import ListaPost from '../common/ListaPost';
+import React, {Component} from 'react';
+import ListaPost from '../postagem/ListaPost';
 
-const Perfil = () => {
-    return (
-        <div>
-            <div>Foto</div>
-            <div>Nome</div>
-            <div>Usuário</div>
-            <br />
-            <ListaPost />
-        </div>
-
-    );
+class Perfil extends Component {
+    render() {
+        return (
+            <div>
+                <div>Foto</div>
+                <div>Nome</div>
+                <div>Usuário</div>
+                <br />
+                <ListaPost postagens={[]}/>
+            </div>
+        );
+    }
 }
 
 export default Perfil;
