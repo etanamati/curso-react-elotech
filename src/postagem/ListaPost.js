@@ -7,7 +7,7 @@ const ListaPost = ({postagens}) => {
         <div>
             <h1>Lista post</h1>
             {
-                postagens.map((post) => <Post {...post}/>)
+                postagens.map((post) => <Post post={post}/>)
             }
            
         </div>
