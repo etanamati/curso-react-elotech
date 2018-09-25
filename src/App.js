@@ -43,9 +43,9 @@ class App extends Component {
         <div>
           <Header logado={this.state.logado} onLogin={this.onLogin} onLogout={this.onLogout} uid={this.state.uid} />
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/configuracao" exact component={Configuracao} />
-            <Route path="/perfil" exact component={Perfil} />
+            <Route path="/" exact render={(props) => <Home {...props} usuarioLogado={this.state.usuarioLogado}/>} />
+            <Route path="/configuracao" exact render={(props) => <Configuracao {...props} usuarioLogado={this.state.usuarioLogado}/>} />
+            <Route path="/perfil" exact render={(props) => <Perfil {...props} usuarioLogado={this.state.usuarioLogado}/>} />
           </Switch>
         </div>
       </div>
