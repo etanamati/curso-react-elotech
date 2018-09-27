@@ -8,25 +8,7 @@ class Home extends Component {
         super(props);
         console.log(props);
         this.state = {
-            conteudo: '',
-            postagens: [
-                {
-                    uid: '1',
-                    content: 'Primeira postagem',
-                    author: '1',
-                    timestamp: Date.now(),
-                    authorName: 'Elton',
-                    authorUserName: '@elton'
-                },
-                {
-                    uid: '2',
-                    content: 'Segunda postagem',
-                    author: '1',
-                    timestamp: Date.now(),
-                    authorName: 'Elton',
-                    authorUserName: '@elton'
-                }
-            ]
+            conteudo: ''
         }
     }
 
@@ -37,19 +19,15 @@ class Home extends Component {
         });
     }
 
-    handlePostar = () => {
-        console.log('Postar!', this.state.conteudo);
-        this.setState({conteudo: ''});
-    }
-
     render() {
+        const {postagens, handlePostar} = this.props;
         return (
-            <div>
+            <div className="container">
                 <Postar conteudo={this.state.conteudo} 
                     handleChange={this.handleChange}
-                    handlePostar={this.handlePostar}/>
+                    handlePostar={() => handlePostar(this.state.conteudo)}/>
                 <br/>
-                <ListaPost postagens={this.state.postagens}/>
+                <ListaPost postagens={postagens}/>
             </div>
         )
     };

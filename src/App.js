@@ -22,10 +22,19 @@ class App extends Component {
         displayName: 'Elton',
         photoURL: '',
         email: 'elton@twitter.com'
-      }
+      },
+      postagens: [
+        {
+            uid: '1',
+            content: 'Primeira postagem',
+            author: '1',
+            timestamp: Date.now(),
+            authorName: 'Elton',
+            authorUserName: '@elton'
+        }
+      ]
     }
   }
-
 
   onLogin = () => {
     this.setState({ logado: true });
@@ -36,6 +45,15 @@ class App extends Component {
     this.props.history.push('/');
   }
 
+  handlePostar = (conteudo) => {
+      const postagens = [ 
+        {
+            content: conteudo
+        },
+        ...this.state.postagens];
+      this.setState({postagens});
+  }
+
   render() {
     return (
 
@@ -43,7 +61,7 @@ class App extends Component {
         <div>
           <Header logado={this.state.logado} onLogin={this.onLogin} onLogout={this.onLogout} uid={this.state.uid} />
           <Switch>
-            <Route path="/" exact render={(props) => <Home {...props} usuarioLogado={this.state.usuarioLogado}/>} />
+            <Route path="/" exact render={(props) => <Home {...props} usuarioLogado={this.state.usuarioLogado} postagens={this.state.postagens} handlePostar={this.handlePostar}/>} />
             <Route path="/configuracao" exact render={(props) => <Configuracao {...props} usuarioLogado={this.state.usuarioLogado}/>} />
             <Route path="/perfil" exact render={(props) => <Perfil {...props} usuarioLogado={this.state.usuarioLogado}/>} />
           </Switch>
